@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study & Pomodoro Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-content">
+            <h1>Welcome to Study Tracker 🍅</h1>
+            <p>
+                Boost your productivity and manage your time effectively! <br><br>
+                This web application combines a <strong>Pomodoro Timer</strong> with a <strong>Daily Schedule Planner</strong>. 
+                Plan your tasks, track your focus sessions, and stay organized with our interactive calendar.
+            </p>
+            <button id="enter-app-btn" class="btn-primary enter-btn">Get Started</button>
+        </div>
+    </div>
+
+    <div class="app-container" id="main-app" style="display: none;">
+        
+        <div class="dashboard-container">
+            <main class="schedule-section">
+                <h2>📅 Schedule for <span id="schedule-date-label">Today</span></h2>
+                <form id="schedule-form">
+                    <input type="text" id="task-name" placeholder="What's your plan?" required>
+                    <div class="time-inputs">
+                        <label>Start: <input type="time" id="start-time" required></label>
+                        <label>End: <input type="time" id="end-time" required></label>
+                    </div>
+                    <div class="repeat-input">
+                        <label>Repeat: 
+                            <select id="task-repeat">
+                                <option value="once">No Repeat (Only this date)</option>
+                                <option value="daily">Every Day</option>
+                                <option value="1">Every Monday</option>
+                                <option value="2">Every Tuesday</option>
+                                <option value="3">Every Wednesday</option>
+                                <option value="4">Every Thursday</option>
+                                <option value="5">Every Friday</option>
+                                <option value="6">Every Saturday</option>
+                                <option value="0">Every Sunday</option>
+                            </select>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-primary">➕ Add Task</button>
+                </form>
+            </main>
+
+            <aside class="timer-section">
+                <h2>⏱️ Pomodoro Timer</h2>
+                <div class="timer-modes">
+                    <button class="mode-btn active" data-mode="pomodoro">Focus (25m)</button>
+                    <button class="mode-btn" data-mode="short">Short Break (5m)</button>
+                    <button class="mode-btn" data-mode="long">Long Break (15m)</button>
+                </div>
+                <div class="timer-display" id="timer-clock">25:00</div>
+                <div class="timer-controls">
+                    <button id="start-btn" class="btn-success">Start</button>
+                    <button id="pause-btn" class="btn-warning" disabled>Pause</button>
+                    <button id="reset-btn" class="btn-danger">Reset</button>
+                </div>
+            </aside>
+        </div>
+
+        <div class="calendar-task-container">
+            <section class="calendar-section single-month-mode">
+                <div class="calendar-nav-controls">
+                    <div class="nav-group">
+                        <button id="prev-year" class="icon-btn" title="Previous Year">&lt;&lt;</button>
+                        <span id="current-year-display" class="nav-label">2026</span>
+                        <button id="next-year" class="icon-btn" title="Next Year">&gt;&gt;</button>
+                    </div>
+                    <div class="nav-group">
+                        <button id="prev-month" class="icon-btn" title="Previous Month">&lt;</button>
+                        <span id="current-month-display" class="nav-label">May</span>
+                        <button id="next-month" class="icon-btn" title="Next Month">&gt;</button>
+                    </div>
+                </div>
+                <p class="calendar-subtitle">Selected Date: <span id="selected-date-display" class="highlight-text">Today</span> <br> <small style="color:var(--text-muted); font-size:0.8rem;">(Click to select date and view tasks)</small></p>
+                <div class="single-month-container">
+                    <div class="days-grid" id="single-month-grid"></div>
+                </div>
+            </section>
+
+            <section class="task-list-section">
+                <h2>📋 Tasks for <span id="task-list-date-label">Today</span></h2>
+                <div id="schedule-list" class="schedule-list"></div>
+            </section>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('enter-app-btn').addEventListener('click', function() {
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const mainApp = document.getElementById('main-app');
+            
+            welcomeScreen.style.opacity = '0';
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+                mainApp.style.display = 'flex';
+                mainApp.style.animation = 'fadeIn 0.5s ease forwards';
+            }, 400); 
+        });
+    </script>
+
+    <script src="calendar.js"></script>
+    <script src="schedule.js"></script>
+    <script src="timer.js"></script>
+</body>
+</html>
