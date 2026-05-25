@@ -153,3 +153,62 @@ button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 .modal-task-item { background: #0f172a; padding: 12px; border-radius: 8px; border-left: 3px solid var(--accent-color); }
 .modal-task-title { font-weight: 500; font-size: 1rem; margin-bottom: 4px; }
 .modal-task-time { font-size: 0.8rem; color: var(--text-muted); }
+
+/* --- New Features Styling (Modern Segmented Control) --- */
+.task-type-selector {
+    display: flex; 
+    background: #0f172a; 
+    padding: 6px; 
+    border-radius: 12px; 
+    border: 1px solid var(--border-color);
+    margin-bottom: 18px; 
+    gap: 5px;
+}
+
+/* ซ่อนปุ่มวงกลม (Radio) ทิ้งไป */
+.task-type-selector input[type="radio"] { 
+    display: none; 
+}
+
+/* ตกแต่งกรอบตัวหนังสือให้กลายเป็นปุ่ม */
+.task-type-selector label {
+    flex: 1; /* แบ่งความกว้างให้เท่ากัน 3 ส่วน */
+    cursor: pointer; 
+    color: var(--text-muted); 
+    font-size: 0.95rem; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    gap: 8px; 
+    font-weight: 600;
+    padding: 10px 5px;
+    border-radius: 8px;
+    transition: all 0.3s ease; /* แอนิเมชันนุ่มๆ */
+}
+
+/* เอฟเฟกต์ตอนเอาเมาส์ชี้ */
+.task-type-selector label:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* 🌟 เอฟเฟกต์ตอนที่ปุ่มถูกเลือก (Active) 🌟 */
+.task-type-selector label:has(input[type="radio"]:checked) {
+    background: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); /* เพิ่มแสงเงาเรืองๆ ให้ดูพรีเมียม */
+}
+
+/* Headers for Task List */
+.list-section-header {
+    color: var(--accent-color); font-size: 1.05rem; font-weight: 600;
+    margin-top: 15px; margin-bottom: 8px; padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.list-section-header:first-child { margin-top: 0; }
+
+/* จัด Timer ให้อยู่กึ่งกลางความสูงของกล่อง */
+.timer-section {
+    display: flex; flex-direction: column; align-items: center; 
+    justify-content: center !important; 
+}

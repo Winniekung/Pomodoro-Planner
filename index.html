@@ -27,26 +27,48 @@
             <main class="schedule-section">
                 <h2>📅 Schedule for <span id="schedule-date-label">Today</span></h2>
                 <form id="schedule-form">
+                    <div class="task-type-selector">
+                        <label><input type="radio" name="task-type" value="schedule" checked> 🕒 Plan</label>
+                        <label><input type="radio" name="task-type" value="todo"> 📝 To-Do</label>
+                        <label><input type="radio" name="task-type" value="routine"> 🔄 Routine</label>
+                    </div>
+
                     <input type="text" id="task-name" placeholder="What's your plan?" required>
-                    <div class="time-inputs">
-                        <label>Start: <input type="time" id="start-time" required></label>
-                        <label>End: <input type="time" id="end-time" required></label>
+                    
+                    <div id="schedule-fields">
+                        <div class="time-inputs">
+                            <label>Start: <input type="time" id="start-time" required></label>
+                            <label>End: <input type="time" id="end-time" required></label>
+                        </div>
+                        <div class="repeat-input">
+                            <label>Repeat: 
+                                <select id="task-repeat">
+                                    <option value="once">No Repeat (Only this date)</option>
+                                    <option value="daily">Every Day</option>
+                                    <option value="1">Every Monday</option>
+                                    <option value="2">Every Tuesday</option>
+                                    <option value="3">Every Wednesday</option>
+                                    <option value="4">Every Thursday</option>
+                                    <option value="5">Every Friday</option>
+                                    <option value="6">Every Saturday</option>
+                                    <option value="0">Every Sunday</option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
-                    <div class="repeat-input">
-                        <label>Repeat: 
-                            <select id="task-repeat">
-                                <option value="once">No Repeat (Only this date)</option>
-                                <option value="daily">Every Day</option>
-                                <option value="1">Every Monday</option>
-                                <option value="2">Every Tuesday</option>
-                                <option value="3">Every Wednesday</option>
-                                <option value="4">Every Thursday</option>
-                                <option value="5">Every Friday</option>
-                                <option value="6">Every Saturday</option>
-                                <option value="0">Every Sunday</option>
-                            </select>
-                        </label>
+
+                    <div id="routine-fields" style="display: none;">
+                        <div class="repeat-input">
+                            <label>Frequency: 
+                                <select id="routine-freq">
+                                    <option value="daily">Every Day (ทุกวัน)</option>
+                                    <option value="every-other">Every other day (วันเว้นวัน)</option>
+                                    <option value="every-2-days">Every 2 days (2 วันทำทีนึง)</option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
+
                     <button type="submit" class="btn-primary">➕ Add Task</button>
                 </form>
             </main>
